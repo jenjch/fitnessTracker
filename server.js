@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
-const Workout = require("./models/workout.js");
+// const Workout = require("./models/workout.js");
 
 const PORT = process.env.PORT || 3000;
 
@@ -25,9 +25,7 @@ mongoose.set('useUnifiedTopology', true);
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
-// routes
-// app.use(require("./routes/api-routes.js"));
-// app.use(require("./routes/html-routes.js"));
+// HTML Routes
 
  //home route 
  app.get("/", function(req, res) {
@@ -45,10 +43,10 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { use
     });
 
 
-// api routes
+// API Routes
 
 // POST /api/workouts
-// > create an empty workout (with default date)
+// create an empty workout (with default date)
 
 app.post("/api/workouts", ({ body }, res) => {
     db.Workout.create(body)
@@ -61,8 +59,8 @@ app.post("/api/workouts", ({ body }, res) => {
   });
   
   // PUT /api/workouts/:id
-  // > add an exercise to the workout with a matching id
-  //   - req.params.id
+  // add an exercise to the workout with a matching id
+  // req.params.id
   
   app.put("/api/workouts/:id", (req, res) => {
   
@@ -79,7 +77,7 @@ app.post("/api/workouts", ({ body }, res) => {
   });
   
   // GET /api/workouts
-  // > display (json) all workouts
+  // display (json) all workouts
   app.get("/api/workouts", (req, res) => {
     db.Workout.find({})
       .then(dbWorkout => {
@@ -91,7 +89,7 @@ app.post("/api/workouts", ({ body }, res) => {
   });
   
   // GET /api/workouts/range
-  // > display (json) last 7 workouts (or all workouts this week)
+  // display (json) last 7 workouts (or all workouts this week)
   
   app.get("/api/workouts/range", (req, res) => {
     
@@ -107,8 +105,8 @@ app.post("/api/workouts", ({ body }, res) => {
   });
   
   // DELETE /api/workouts
-  // > delete workout with matching id
-  //   - body.id
+  // delete workout with matching id
+  // body.id
   
   app.delete("/api/workouts", (req, res) => {
     db.Workout.deleteOne({ _id: mongoose.Types.ObjectId(req.body.id) })
