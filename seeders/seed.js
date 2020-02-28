@@ -1,11 +1,19 @@
 let mongoose = require("mongoose");
 let db = require("../models");
 
-// connecting
+// connecting to local instance
 mongoose.connect("mongodb://localhost/workout", {
   useNewUrlParser: true,
   useFindAndModify: false
 });
+
+// connecting to heroku deployed database
+// mongoose.connect(
+//   process.env.MONGODB_URI ||
+//     "mongodb://userjc:mongodb1@ds239967.mlab.com:39967/heroku_ps1sgg1w",
+//   {
+//     useNewUrlParser: true
+//   });
 
 // data to be seeded to database (10)
 let workoutSeed = [
