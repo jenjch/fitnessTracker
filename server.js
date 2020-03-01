@@ -2,7 +2,6 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
-// const Workout = require("./models/workout.js");
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,6 +22,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 
+//sample connection code, from example activities
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 //   useNewUrlParser: true
 // });
@@ -31,14 +31,6 @@ mongoose.set("useUnifiedTopology", true);
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
 
 mongoose.connect(MONGODB_URI);
-
-// video example for heroku deployment-
-// mongoose.connect(
-//   process.env.MONGODB_URI ||
-//     "mongodb://userjc:mongodb1@ds239967.mlab.com:39967/heroku_ps1sgg1w",
-//   {
-//     useNewUrlParser: true
-//   });
 
 // HTML Routes
 
@@ -108,7 +100,9 @@ app.get("/api/workouts", (req, res) => {
 
 app.get("/api/workouts/range", (req, res) => {
   db.Workout.find({})
+    // sort gets the most recent entries
     .sort({ day: -1 })
+    // limit to the last 7 entries
     .limit(7)
     .then(dbWorkout => {
       res.json(dbWorkout);
@@ -121,6 +115,7 @@ app.get("/api/workouts/range", (req, res) => {
 // DELETE /api/workouts
 // delete workout with matching id
 // body.id
+// but no delete button for front end
 
 app.delete("/api/workouts", (req, res) => {
   db.Workout.deleteOne({ _id: mongoose.Types.ObjectId(req.body.id) })
