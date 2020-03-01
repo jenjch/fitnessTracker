@@ -41,9 +41,9 @@ https://github.com/jenjch/fitnessTracker
 
 Images of the application:
 
-![Fitness Tracker](./fitnessTracker.png)
-![Add Exercises](./addExercise.png)
-![Fitness Statistics](./fitnessStats.png)
+![Fitness Tracker](./fitnessTracker.PNG)
+![Add Exercises](./addExercise.PNG)
+![Fitness Statistics](./fitnessStats.PNG)
 
 The deployed application is hosted on Heroku:
 https://fitness-tracker-022920.herokuapp.com/ 
